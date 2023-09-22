@@ -74,7 +74,7 @@ typedef struct tls_ctx {
 } tls_ctx;
 #define TLS_CTX tls_ctx *
 #define TLS_client(ctx, s)                   \
-    s = malloc(sizeof(ssl_context));         \
+    s = calloc(1, sizeof(ssl_context));         \
     ssl_init(s);                             \
     ssl_set_endpoint(s, SSL_IS_CLIENT);      \
     ssl_set_authmode(s, SSL_VERIFY_NONE);    \

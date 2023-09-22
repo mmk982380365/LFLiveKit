@@ -361,7 +361,7 @@ Failed:
     NSInteger sps_len = videoFrame.sps.length;
     NSInteger pps_len = videoFrame.pps.length;
 
-    body = (unsigned char *)malloc(rtmpLength);
+    body = (unsigned char *)calloc(1, rtmpLength);
     memset(body, 0, rtmpLength);
 
     body[iIndex++] = 0x17;
@@ -399,7 +399,7 @@ Failed:
 
     NSInteger i = 0;
     NSInteger rtmpLength = frame.data.length + 9;
-    unsigned char *body = (unsigned char *)malloc(rtmpLength);
+    unsigned char *body = (unsigned char *)calloc(1, rtmpLength);
     memset(body, 0, rtmpLength);
 
     if (frame.isKeyFrame) {
@@ -456,7 +456,7 @@ Failed:
 - (void)sendAudioHeader:(LFAudioFrame *)audioFrame {
 
     NSInteger rtmpLength = audioFrame.audioInfo.length + 2;     /*spec data长度,一般是2*/
-    unsigned char *body = (unsigned char *)malloc(rtmpLength);
+    unsigned char *body = (unsigned char *)calloc(1, rtmpLength);
     memset(body, 0, rtmpLength);
 
     /*AF 00 + AAC RAW data*/
@@ -470,7 +470,7 @@ Failed:
 - (void)sendAudio:(LFFrame *)frame {
 
     NSInteger rtmpLength = frame.data.length + 2;    /*spec data长度,一般是2*/
-    unsigned char *body = (unsigned char *)malloc(rtmpLength);
+    unsigned char *body = (unsigned char *)calloc(1, rtmpLength);
     memset(body, 0, rtmpLength);
 
     /*AF 01 + AAC RAW data*/

@@ -245,7 +245,7 @@ NSString *const kGPUImageLuminosityFragmentShaderString = SHADER_STRING
         currentTexture = [[stageTextures objectAtIndex:currentStage] intValue];
         
 //        NSUInteger totalBytesForImage = (int)currentStageSize.width * (int)currentStageSize.height * 4;
-//        GLubyte *rawImagePixels2 = (GLubyte *)malloc(totalBytesForImage);
+//        GLubyte *rawImagePixels2 = (GLubyte *)calloc(1, totalBytesForImage);
 //        glReadPixels(0, 0, (int)currentStageSize.width, (int)currentStageSize.height, GL_RGBA, GL_UNSIGNED_BYTE, rawImagePixels2);
 //        CGDataProviderRef dataProvider = CGDataProviderCreateWithData(NULL, rawImagePixels2, totalBytesForImage, NULL);
 //        CGColorSpaceRef defaultRGBColorSpace = CGColorSpaceCreateDeviceRGB();
@@ -300,7 +300,7 @@ NSString *const kGPUImageLuminosityFragmentShaderString = SHADER_STRING
         
         if (rawImagePixels == NULL)
         {
-            rawImagePixels = (GLubyte *)malloc(totalNumberOfPixels * 4);
+            rawImagePixels = (GLubyte *)calloc(1, totalNumberOfPixels * 4);
         }
         
         [GPUImageContext useImageProcessingContext];

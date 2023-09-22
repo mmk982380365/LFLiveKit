@@ -29,11 +29,11 @@
         _configuration = configuration;
         
         if (!leftBuf) {
-            leftBuf = malloc(_configuration.bufferLength);
+            leftBuf = calloc(1, _configuration.bufferLength);
         }
         
         if (!aacBuf) {
-            aacBuf = malloc(_configuration.bufferLength);
+            aacBuf = calloc(1, _configuration.bufferLength);
         }
         
         
@@ -64,7 +64,7 @@
         ///<  发送
         NSInteger totalSize = leftLength + audioData.length;
         NSInteger encodeCount = totalSize/self.configuration.bufferLength;
-        char *totalBuf = malloc(totalSize);
+        char *totalBuf = calloc(1, totalSize);
         char *p = totalBuf;
         
         memset(totalBuf, (int)totalSize, 0);
@@ -208,7 +208,7 @@ OSStatus inputDataProc(AudioConverterRef inConverter, UInt32 *ioNumberDataPacket
  **/
 - (NSData *)adtsData:(NSInteger)channel rawDataLength:(NSInteger)rawDataLength {
     int adtsLength = 7;
-    char *packet = malloc(sizeof(char) * adtsLength);
+    char *packet = calloc(1, sizeof(char) * adtsLength);
     // Variables Recycled by addADTStoPacket
     int profile = 2;  //AAC LC
     //39=MediaCodecInfo.CodecProfileLevel.AACObjectELD;

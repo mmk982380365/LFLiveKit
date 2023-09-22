@@ -40,7 +40,7 @@
     sha2_hmac_finish(&ctx, dig)
 
 typedef arc4_context *RC4_handle;
-#define RC4_alloc(h) *h = malloc(sizeof(arc4_context))
+#define RC4_alloc(h) *h = calloc(1, sizeof(arc4_context))
 #define RC4_setkey(h, l, k) arc4_setup(h, k, l)
 #define RC4_encrypt(h, l, d) \
     arc4_crypt(h, l, (unsigned char *)d, (unsigned char *)d)
@@ -88,7 +88,7 @@ typedef gcry_cipher_hd_t RC4_handle;
     HMAC_CTX_cleanup(&ctx)
 
 typedef RC4_KEY *RC4_handle;
-#define RC4_alloc(h) *h = malloc(sizeof(RC4_KEY))
+#define RC4_alloc(h) *h = calloc(1, sizeof(RC4_KEY))
 #define RC4_setkey(h, l, k) RC4_set_key(h, l, k)
 #define RC4_encrypt(h, l, d) RC4(h, l, (uint8_t *)d, (uint8_t *)d)
 #define RC4_encrypt2(h, l, s, d) RC4(h, l, (uint8_t *)s, (uint8_t *)d)
